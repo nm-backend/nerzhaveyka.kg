@@ -1,0 +1,12 @@
+{% load static %}
+<div class="{% if footer %}footer-socials{% else %}socials{% endif %}">
+  <a href="https://vt.tiktok.com/ZSUSAyLjM/" target="_blank" rel="noopener noreferrer" {% if not footer %}class="socials-link"{% endif %} aria-label="TikTok">
+    <img src="{% static 'img/tiktok.svg' %}" alt="" width="20" height="20">
+  </a>
+  <a href="https://wa.me/+996998666555?text=Здравствуйте" target="_blank" rel="noopener noreferrer" {% if not footer %}class="socials-link"{% endif %} aria-label="WhatsApp">
+    <img src="{% static 'img/whatsapp.svg' %}" alt="" width="20" height="20">
+  </a>
+  <a href="https://www.instagram.com/nerjaveyka_borboru" target="_blank" rel="noopener noreferrer" {% if not footer %}class="socials-link"{% endif %} aria-label="Instagram">
+    <img src="{% static 'img/instagram.svg' %}" alt="" width="20" height="20">
+  </a>
+</div>

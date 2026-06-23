@@ -1,0 +1,32 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{% block title %}Нержавейка - трубы, фитинги и изделия из стали в Оше{% endblock %}</title>
+  <meta name="description" content="{% block description %}Нержавейка Борбору - производство и продажа изделий из нержавеющей стали в Оше: трубы, листы, фитинги, перила и монтаж.{% endblock %}">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="{% static 'css/style.css' %}">
+  {% block extra_css %}{% endblock %}
+</head>
+<body>
+  {% include "headfoot/header.html" %}
+
+  <main>
+    {% block content %}{% endblock %}
+  </main>
+
+  {% block cta %}
+    {% include "headfoot/cta.html" %}
+  {% endblock %}
+
+  {% include "headfoot/footer.html" %}
+
+  <script src="{% static 'js/main.js' %}" defer></script>
+  {% block extra_js %}{% endblock %}
+</body>
+</html>

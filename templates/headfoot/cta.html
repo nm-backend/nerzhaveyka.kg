@@ -1,0 +1,24 @@
+<section class="cta" id="cta">
+  <div class="container">
+    <div class="cta-box">
+      <div class="cta-content">
+        <h2 class="cta-title">Остались<br>вопросы?</h2>
+        <p class="cta-text">
+          Если у вас остались вопросы, то можете связаться с нами и получить ответы.
+        </p>
+
+        <form class="cta-form" method="post" action="{% url 'api:contact-submit' %}">
+          {% csrf_token %}
+          <input class="cta-input" type="text" name="name" placeholder="Имя">
+          <input class="cta-input" type="tel" name="phone" placeholder="Номер телефона">
+          <button class="cta-submit" type="submit">Записаться</button>
+          <p class="cta-form-message"></p>
+        </form>
+      </div>
+
+      <div class="cta-cubes">
+        <img src="/static/img/custom_8.webp" alt="">
+      </div>
+    </div>
+  </div>
+</section>

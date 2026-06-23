@@ -1,0 +1,79 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Магазины | Нержавейка{% endblock %}
+{% block description %}Каталог товаров Нержавейка Борбору: трубы, листы, профиль, фитинги и услуги по обработке металла в Оше.{% endblock %}
+
+{% block content %}
+
+<section class="shop-page">
+  <div class="container shop-container">
+    <aside class="shop-sidebar">
+      <div class="shop-box">
+        <h2 class="shop-box-title">Категории</h2>
+        <ul class="shop-category-list">
+          <li>
+            <a href="{% url 'main:products' %}" class="shop-category-link{% if not active_category %} active{% endif %}">Все товары</a>
+          </li>
+          {% for cat in categories %}
+          <li>
+            <a href="{% url 'main:products' %}?category={{ cat|urlencode }}" class="shop-category-link{% if active_category == cat %} active{% endif %}">{{ cat }}</a>
+          </li>
+          {% endfor %}
+        </ul>
+      </div>
+
+      <div class="shop-box">
+        <h2 class="shop-box-title">Фильтр</h2>
+        <form class="shop-filter" action="{% url 'main:products' %}" method="get">
+          {% if active_category %}
+          <input type="hidden" name="category" value="{{ active_category }}">
+          {% endif %}
+          <label class="shop-label" for="price-from">Цена от</label>
+          <input class="shop-input" id="price-from" type="number" name="price_from" placeholder="0" value="{{ request.GET.price_from }}">
+
+          <label class="shop-label" for="price-to">Цена до</label>
+          <input class="shop-input" id="price-to" type="number" name="price_to" placeholder="100000" value="{{ request.GET.price_to }}">
+
+          <button class="shop-filter-btn" type="submit">Применить</button>
+          <a href="{% url 'main:products' %}" class="shop-reset">Сбросить</a>
+        </form>
+      </div>
+    </aside>
+
+    <div class="shop-content">
+      <div class="shop-top">
+        <h1 class="shop-title">Магазины</h1>
+        <p class="shop-count">{{ products|length }} товаров</p>
+      </div>
+
+      <div class="shop-grid">
+        {% for product in products %}
+        <div class="shop-card">
+          <div class="shop-card-img">
+            {% if product.image %}
+            <img src="{{ product.image.url }}" alt="{{ product.name }}">
+            {% else %}
+            {% include "headfoot/placeholder.html" with label=product.name extra_class="" %}
+            {% endif %}
+          </div>
+          <div class="shop-card-body">
+            <p class="shop-card-category">
+              {% if product.category %}{{ product.category }}{% elif product.in_stock %}В наличии{% endif %}
+            </p>
+            <h2 class="shop-card-title">{{ product.name }}</h2>
+            <p class="shop-card-text">{{ product.description }}</p>
+            <a href="{% url 'main:contacts' %}" class="shop-card-btn">
+              {% if product.price %}от {{ product.price }} сом{% else %}Уточнить цену{% endif %}
+            </a>
+          </div>
+        </div>
+        {% empty %}
+        <p class="shop-empty">Товары пока не добавлены. Свяжитесь с нами для уточнения ассортимента.</p>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+</section>
+
+{% endblock %}

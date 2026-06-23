@@ -1,0 +1,38 @@
+<footer class="footer">
+  <div class="container footer-inner">
+    <div class="footer-about">
+      <p class="footer-logo">Нержавейка</p>
+      <p class="footer-text">
+        Мы гордимся тем, что наши изделия украшают десятки домов, предприятий
+        и объектов по всему югу Кыргызстана. Каждый клиент получает качество,
+        надежность и красивый результат.
+      </p>
+      {% include "headfoot/socials.html" with footer=True %}
+    </div>
+
+    <div class="footer-col">
+      <p class="footer-col-title">Компания</p>
+      <ul>
+        <li><a href="{% url 'main:index' %}">Главная</a></li>
+        <li><a href="{% url 'main:about' %}">О нас</a></li>
+        <li><a href="{% url 'main:products' %}">Магазины</a></li>
+        <li><a href="{% url 'main:gallery' %}">Галерея</a></li>
+      </ul>
+    </div>
+
+    <div class="footer-col">
+      <p class="footer-col-title">Еще</p>
+      <ul>
+        <li><a href="{% url 'main:contacts' %}">Контакты</a></li>
+        <li><a href="https://maps.app.goo.gl/qtbForxiAuCLuo6r6" target="_blank">Адрес</a></li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="container footer-bottom">
+    <a href="http://prolabagency.com/?rel=https://nerzhaveyka.kg/" target="_blank">
+      Создание сайта <b>'PROlab Agency'</b>
+    </a>
+    <p>© 2025 Все права защищены.</p>
+  </div>
+</footer>

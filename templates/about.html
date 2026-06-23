@@ -1,0 +1,126 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}О нас | Нержавейка{% endblock %}
+{% block description %}О компании Нержавейка Борбору: нержавеющие трубы, фитинги, изделия из металла и монтажные работы в Оше.{% endblock %}
+
+{% block content %}
+
+<section class="about-hero">
+  <div class="container about-hero-inner">
+    <div class="about-hero-text">
+      <h1>О компании «Нержавейка Ош» - ваш надежный поставщик нержавеющей стали в Кыргызстане</h1>
+      <p>
+        Качество, прочность и доверие - всё, что нужно для ваших проектов.
+        Мы работаем для тех, кто строит, создает и делает мир прочнее.
+      </p>
+
+      <div class="about-hero-buttons">
+        <a href="{% url 'main:products' %}" class="about-blue-btn">Интернет магазин</a>
+        <a href="{% url 'main:gallery' %}" class="about-white-link">Перейти к галерее →</a>
+      </div>
+    </div>
+
+    <div class="about-hero-img">
+      <img src="{% static 'img/banner.png' %}" alt="Нержавеющие трубы">
+    </div>
+  </div>
+</section>
+
+<section class="about-intro">
+  <div class="container about-intro-grid">
+    <div class="about-intro-text">
+      <h2>История компании «Нержавейка Борбору №1»</h2>
+      <p>
+        Компания была основана в городе Ош с простой идеей - создавать
+        качественные изделия из нержавеющей стали, которые служат людям долгие годы.
+      </p>
+      <p>
+        С момента основания наша цель - стать лучшей компанией в Кыргызстане
+        в сфере производства и монтажа нержавейки.
+      </p>
+    </div>
+
+    <div class="about-video">
+      <img src="{% static 'img/custom_1.webp' %}" alt="Видео о компании">
+      <div class="about-play">▶</div>
+    </div>
+  </div>
+</section>
+
+<section class="about-founder">
+  <div class="container about-founder-grid">
+    <div class="about-founder-img">
+      <img src="{% static 'img/catalog-installation.jpg' %}" alt="Основатель компании">
+    </div>
+
+    <div class="about-founder-text">
+      <h2>Илхомжан Ходжакулов</h2>
+      <p>
+        Наш директор лично контролирует качество каждого проекта и вдохновляет
+        команду на развитие. Под его руководством компания планирует открывать
+        новые филиалы, чтобы обслуживать клиентов по всему Кыргызстану.
+      </p>
+    </div>
+  </div>
+</section>
+
+<section class="about-benefits">
+  <div class="container">
+    <h2 class="about-section-title">Почему выбирают нас</h2>
+
+    <div class="about-benefits-grid">
+      <div class="about-benefit-card">
+        <div class="about-benefit-icon">01</div>
+        <h3>Качество</h3>
+        <p>Используем надежные материалы и аккуратно выполняем каждый заказ.</p>
+      </div>
+
+      <div class="about-benefit-card">
+        <div class="about-benefit-icon">02</div>
+        <h3>Опыт</h3>
+        <p>Работаем с нержавеющей сталью, перилами, трубами и фитингами.</p>
+      </div>
+
+      <div class="about-benefit-card">
+        <div class="about-benefit-icon">03</div>
+        <h3>Монтаж</h3>
+        <p>Выполняем установку изделий на объектах любой сложности.</p>
+      </div>
+
+      <div class="about-benefit-card">
+        <div class="about-benefit-icon">04</div>
+        <h3>Доставка</h3>
+        <p>Работаем с клиентами в Оше и по всему Кыргызстану.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="about-history-dark">
+  <div class="container about-history-grid">
+    <div class="about-history-text">
+      <h2>История компании</h2>
+      <p>
+        Начав с небольшого цеха и нескольких сотрудников, мы постепенно
+        выросли в сильную команду профессионалов.
+      </p>
+      <p>
+        Сегодня у нас работают опытные мастера, которые выполняют заказы
+        любого уровня сложности - от простых перил до комплексного оснащения
+        домов, кафе, ресторанов и промышленных объектов.
+      </p>
+      <p>
+        Мы гордимся тем, что наши изделия украшают десятки объектов по всему
+        югу Кыргызстана. Каждый клиент получает качество, надежность и
+        красивый результат.
+      </p>
+    </div>
+
+    <div class="about-history-img">
+      <img src="{% static 'img/catalog-sheets.jpg' %}" alt="Строительный проект">
+    </div>
+  </div>
+</section>
+
+{% endblock %}

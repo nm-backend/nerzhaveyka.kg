@@ -1,0 +1,165 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Нержавейка - трубы и фитинги по выгодным ценам в Оше{% endblock %}
+
+{% block content %}
+
+<section class="hero">
+  <div class="container hero-inner">
+    <div class="hero-content">
+      <h1 class="hero-title">
+        Нержавейка по выгодным ценам в Оше - всё для ваших проектов!
+      </h1>
+      <p class="hero-text">
+        Листы, трубы, уголки, фитинги и комплектующие из нержавеющей стали -
+        оптом и в розницу. Широкий ассортимент на складе, быстрая доставка
+        по Кыргызстану!
+      </p>
+
+      <div class="hero-actions">
+        <a href="{% url 'main:products' %}" class="hero-primary-link">Интернет магазин</a>
+        <a href="{% url 'main:gallery' %}" class="hero-gallery-link">
+          <span>Перейти к галерее</span>
+          <span>→</span>
+        </a>
+      </div>
+    </div>
+
+    <div class="hero-media">
+      <img src="{% static 'img/banner.png' %}" alt="Нержавеющие трубы" class="hero-banner-img">
+    </div>
+  </div>
+</section>
+
+<section class="intro">
+  <div class="container intro-inner">
+    <div class="intro-content">
+      <h2 class="section-title">'Нержавейка Борбору' - более 10 лет на рынке</h2>
+      <p class="intro-text">
+        Производим и продаём изделия из нержавеющей стали в Оше. Изготавливаем
+        конструкции любой сложности и дизайна - от простых элементов до
+        индивидуальных заказов. В наличии трубы, листы, уголки, фитинги и
+        комплектующие. Работаем с оптом и розницей, предлагаем резку, сборку
+        и доставку по всему Кыргызстану.
+      </p>
+      {% include "headfoot/socials.html" %}
+    </div>
+
+    <div class="intro-media">
+      <div class="video-thumb">
+        <img src="{% static 'img/custom_1.webp' %}" alt="Видео о компании">
+        <button type="button" class="video-thumb-play">▶</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="offers" id="offers">
+  <div class="container">
+    <div class="offers-header">
+      <h2 class="section-title">Что мы вам предлагаем</h2>
+      <a href="{% url 'main:gallery' %}" class="offers-more">Показать все</a>
+    </div>
+
+    <div class="offers-grid">
+      <article class="offer-card">
+        <img src="{% static 'img/catalog-sheets.jpg' %}" alt="Трубы" class="offer-card-img">
+        <div class="offer-card-overlay"></div>
+        <div class="offer-card-content">
+          <h3 class="offer-card-title">Трубы</h3>
+          <p class="offer-card-text">
+            Трубы из нержавеющей стали - основа прочных и долговечных
+            конструкций для перил, ограждений, лестниц и других элементов.
+          </p>
+        </div>
+      </article>
+
+      <article class="offer-card">
+        <img src="{% static 'img/catalog-cutting.jpg' %}" alt="Листы и профиль" class="offer-card-img">
+        <div class="offer-card-overlay"></div>
+        <div class="offer-card-content">
+          <h3 class="offer-card-title">Листы и профиль</h3>
+          <p class="offer-card-text">
+            Универсальные материалы для строительства, фасадов,
+            ограждений и декоративных элементов.
+          </p>
+        </div>
+      </article>
+
+      <article class="offer-card">
+        <img src="{% static 'img/catalog-tubes.jpg' %}" alt="Резка металла" class="offer-card-img">
+        <div class="offer-card-overlay"></div>
+        <div class="offer-card-content">
+          <h3 class="offer-card-title">Резка и обработка металла</h3>
+          <p class="offer-card-text">
+            Точная резка и обработка нержавеющего металла под размеры
+            вашего проекта.
+          </p>
+        </div>
+      </article>
+
+      <article class="offer-card">
+        <img src="{% static 'img/catalog-installation.jpg' %}" alt="Монтаж изделий" class="offer-card-img">
+        <div class="offer-card-overlay"></div>
+        <div class="offer-card-content">
+          <h3 class="offer-card-title">Профессиональная установка</h3>
+          <p class="offer-card-text">
+            Монтаж перил, ограждений, поручней, козырьков и других
+            металлических изделий любой сложности.
+          </p>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="location">
+  <div class="container location-inner">
+    <div class="location-info">
+      <h2 class="section-title">Где мы находимся?</h2>
+
+      <ul class="location-list">
+        <li class="location-item">
+          <span class="location-icon">⌖</span>
+          <span>
+            <span class="location-label">Наш адрес</span>
+            <strong class="location-value">HQ5C+RF4, Ош</strong>
+          </span>
+        </li>
+        <li class="location-item">
+          <span class="location-icon">☎</span>
+          <span>
+            <span class="location-label">Телефон</span>
+            <strong class="location-value"><a href="tel:+996998666555">+996 998 666 555</a></strong>
+          </span>
+        </li>
+        <li class="location-item">
+          <span class="location-icon">☎</span>
+          <span>
+            <span class="location-label">Телефон</span>
+            <strong class="location-value"><a href="tel:+996778666555">+996 778 666 555</a></strong>
+          </span>
+        </li>
+        <li class="location-item">
+          <span class="location-icon">@</span>
+          <span>
+            <span class="location-label">Эл. адрес</span>
+            <strong class="location-value"><a href="mailto:hodjakulovilkhom@gmail.com">hodjakulovilkhom@gmail.com</a></strong>
+          </span>
+        </li>
+      </ul>
+
+      {% include "headfoot/socials.html" %}
+    </div>
+
+    <div class="location-map">
+      <iframe
+        src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d720.3035354253379!2d72.7711405!3d40.5593675!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x38bdabbcfa958883%3A0x1cb0b1510f4cac8c!2zSFE1QytSRjQsINCe0Yg!5e1!3m2!1sru!2skg!4v1760617668199!5m2!1sru!2skg"
+        loading="lazy">
+      </iframe>
+    </div>
+  </div>
+</section>
+
+{% endblock %}

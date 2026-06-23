@@ -1,0 +1,52 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Галерея | Нержавейка{% endblock %}
+{% block description %}Галерея работ компании Нержавейка Борбору: трубы, листы, резка металла и изделия из нержавеющей стали в Оше.{% endblock %}
+
+{% block content %}
+
+<div class="page-hero">
+  <div class="container">
+    <h1 class="page-hero-title">Галерея</h1>
+    <div class="page-hero-breadcrumb">
+      <a href="{% url 'main:index' %}">Главная</a>
+      <span class="sep">/</span>
+      <span>Галерея</span>
+    </div>
+  </div>
+</div>
+
+<section class="gallery-page">
+  <div class="container">
+    <div class="gallery-head">
+      <h2>Наши работы и продукция</h2>
+      <p>
+        В этом разделе собраны фотографии нержавеющих труб, листов,
+        готовых изделий и работ по металлу.
+      </p>
+    </div>
+
+    <div class="gallery-grid">
+      {% for item in gallery_images %}
+      <div class="gallery-card">
+        <div class="gallery-card-img">
+          {% if item.image %}
+          <img src="{{ item.image.url }}" alt="{{ item.title }}">
+          {% else %}
+          {% include "headfoot/placeholder.html" with label=item.title extra_class="" %}
+          {% endif %}
+        </div>
+        <h3>{{ item.title }}</h3>
+        {% if item.description %}
+        <p>{{ item.description }}</p>
+        {% endif %}
+      </div>
+      {% empty %}
+      <p class="gallery-empty">Фотографии скоро появятся в галерее.</p>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+{% endblock %}
