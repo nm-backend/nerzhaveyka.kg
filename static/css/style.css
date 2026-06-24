@@ -736,15 +736,15 @@ h3 {
 
 .location-label {
   display: block;
-  font-size: 0.82rem;
-  color: var(--color-text-body-light);
+  font-size: 26px;
+  color: black;
   margin-bottom: 2px;
 }
 
 .location-value {
   display: block;
   color: var(--color-text-dark);
-  font-size: 1rem;
+  font-size: 20px;
   font-weight: 700;
   overflow-wrap: anywhere;
 }
@@ -1518,7 +1518,7 @@ h3 {
 .about-history-text p {
   margin-bottom: 16px;
   color: #61656e;
-  font-size: 16px;
+  font-size: 20px;
   line-height: 26px;
 }
 
