@@ -1483,7 +1483,9 @@ h3 {
 }
 
 .about-intro,
-.about-founder,
+.about-founder{
+  margin-left: 00px;
+}
 .about-benefits {
   background: #fff;
   padding: 72px 0;
