@@ -1560,6 +1560,10 @@ h3 {
 
 .about-founder {
   padding-top: 0;
+  .zor{
+    margin: 50px;
+    margin-left: 180px;
+  }
 }
 
 .about-founder-img {
@@ -1613,6 +1617,7 @@ h3 {
 .about-history-dark {
   padding: 72px 0;
   background: #1f1d1d;
+  margin-top: 50px;
 }
 
 .about-history-text h2,
