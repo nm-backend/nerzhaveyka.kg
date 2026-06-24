@@ -1827,16 +1827,14 @@ h3 {
 
 .gallery-head h2 {
   color: #333333;
-  font-size: 36px;
+  font-size: 40px;
   line-height: 1.15;
   font-weight: 700;
   margin-bottom: 14px;
 }
 
 .gallery-head p {
-  color: #5d6570;
-  font-size: 16px;
-  line-height: 1.55;
+  text-align:end;
 }
 
 .gallery-grid {
