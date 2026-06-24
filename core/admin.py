@@ -5,10 +5,10 @@ from .models import ContactSubmission, GalleryImage, Product
 
 @admin.register(Product)
 class ProductAdmin(admin.ModelAdmin):
-    list_display = ("name", "category", "price", "in_stock", "sort_order", "updated_at")
-    list_filter = ("category", "in_stock")
+    list_display = ("name", "category", "price", "in_stock", "is_sale", "is_new", "is_hit", "sort_order", "updated_at")
+    list_filter = ("category", "in_stock", "is_sale", "is_new", "is_hit")
     search_fields = ("name", "category", "description")
-    list_editable = ("price", "in_stock", "sort_order")
+    list_editable = ("price", "in_stock", "is_sale", "is_new", "is_hit", "sort_order")
     ordering = ("sort_order", "name")
 
 

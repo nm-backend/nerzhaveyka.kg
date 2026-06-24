@@ -1,23 +1,19 @@
 {% extends "base.html" %}
 {% load static %}
 
+{% block body_class %}page-inner{% endblock %}
 {% block title %}Галерея | Нержавейка{% endblock %}
-{% block description %}Галерея работ компании Нержавейка Борбору: трубы, листы, резка металла и изделия из нержавеющей стали в Оше.{% endblock %}
+{% block description %}Галерея работ компании Нержавейка Борбору в Оше.{% endblock %}
 
 {% block content %}
-
-<section class="gallery-page">
+<section class="gallery-page gallery-page--simple">
   <div class="container">
-    <div class="gallery-head">
-      <h2>Галерея</h2>
-      <p>
-        Нет данных
-      </p>
-    </div>
+    <h1 class="gallery-page-title">Галерея</h1>
 
+    {% if gallery_images %}
     <div class="gallery-grid">
       {% for item in gallery_images %}
-      <div class="gallery-card">
+      <article class="gallery-card">
         <div class="gallery-card-img">
           {% if item.image %}
           <img src="{{ item.image.url }}" alt="{{ item.title }}">
@@ -26,15 +22,12 @@
           {% endif %}
         </div>
         <h3>{{ item.title }}</h3>
-        {% if item.description %}
-        <p>{{ item.description }}</p>
-        {% endif %}
-      </div>
-      {% empty %}
-      <!-- <p class="gallery-empty">Фотографии скоро появятся в галерее.</p> -->
+      </article>
       {% endfor %}
     </div>
+    {% else %}
+    <p class="gallery-empty-state">Нет данных</p>
+    {% endif %}
   </div>
 </section>
-
 {% endblock %}

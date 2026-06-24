@@ -1,55 +1,72 @@
 {% extends "base.html" %}
 {% load static %}
 
+{% block body_class %}page-inner{% endblock %}
 {% block title %}Магазины | Нержавейка{% endblock %}
-{% block description %}Каталог товаров Нержавейка Борбору: трубы, листы, профиль, фитинги и услуги по обработке металла в Оше.{% endblock %}
+{% block description %}Каталог товаров Нержавейка Борбору в Оше.{% endblock %}
 
 {% block content %}
-
 <section class="shop-page">
   <div class="container shop-container">
     <aside class="shop-sidebar">
       <div class="shop-box">
         <h2 class="shop-box-title">Категории</h2>
         <ul class="shop-category-list">
-          <li>
-            <a href="{% url 'main:products' %}" class="shop-category-link{% if not active_category %} active{% endif %}">Все товары</a>
-          </li>
           {% for cat in categories %}
           <li>
-            <a href="{% url 'main:products' %}?category={{ cat|urlencode }}" class="shop-category-link{% if active_category == cat %} active{% endif %}">{{ cat }}</a>
+            <a href="?category={{ cat|urlencode }}" class="shop-category-link{% if active_category == cat %} active{% endif %}">{{ cat }}</a>
           </li>
+          {% empty %}
+          <li><span class="shop-category-empty">Категории появятся вместе с товарами</span></li>
           {% endfor %}
         </ul>
       </div>
 
       <div class="shop-box">
-        <h2 class="shop-box-title">Фильтр</h2>
-        <form class="shop-filter" action="{% url 'main:products' %}" method="get">
+        <div class="shop-filter-head">
+          <h2 class="shop-box-title">Фильтр</h2>
+          <a href="{% url 'main:products' %}" class="shop-filter-reset">Сбросить значения</a>
+        </div>
+
+        <form class="shop-filter" id="shopFilter" action="{% url 'main:products' %}" method="get">
           {% if active_category %}
           <input type="hidden" name="category" value="{{ active_category }}">
           {% endif %}
-          <label class="shop-label" for="price-from">Цена от</label>
-          <input class="shop-input" id="price-from" type="number" name="price_from" placeholder="0" value="{{ request.GET.price_from }}">
 
-          <label class="shop-label" for="price-to">Цена до</label>
-          <input class="shop-input" id="price-to" type="number" name="price_to" placeholder="100000" value="{{ request.GET.price_to }}">
+          <label class="shop-label" for="shop-search">Поиск</label>
+          <div class="shop-search-wrap">
+            <svg class="shop-search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+            <input class="shop-input shop-input--search" id="shop-search" type="search" name="q" placeholder="Что ищем?" value="{{ filters.q }}">
+          </div>
+
+          <span class="shop-label">Цена</span>
+          <div class="shop-price-row">
+            <input class="shop-input" type="number" name="price_min" placeholder="Мин сумма" value="{{ filters.price_min }}">
+            <input class="shop-input" type="number" name="price_max" placeholder="Макс сумма" value="{{ filters.price_max }}">
+          </div>
+
+          <label class="shop-check">
+            <input type="checkbox" name="is_sale" value="1"{% if filters.is_sale == '1' %} checked{% endif %}>
+            <span>Товар по акции</span>
+          </label>
+          <label class="shop-check">
+            <input type="checkbox" name="is_new" value="1"{% if filters.is_new == '1' %} checked{% endif %}>
+            <span>Новинка</span>
+          </label>
+          <label class="shop-check">
+            <input type="checkbox" name="is_hit" value="1"{% if filters.is_hit == '1' %} checked{% endif %}>
+            <span>Хит</span>
+          </label>
 
           <button class="shop-filter-btn" type="submit">Применить</button>
-          <a href="{% url 'main:products' %}" class="shop-reset">Сбросить</a>
         </form>
       </div>
     </aside>
 
     <div class="shop-content">
-      <div class="shop-top">
-        <h1 class="shop-title">Магазины</h1>
-        <p class="shop-count">{{ products|length }} товаров</p>
-      </div>
-
       <div class="shop-grid">
         {% for product in products %}
-        <div class="shop-card">
+        <article class="shop-card shop-card--catalog">
           <div class="shop-card-img">
             {% if product.image %}
             <img src="{{ product.image.url }}" alt="{{ product.name }}">
@@ -58,22 +75,40 @@
             {% endif %}
           </div>
           <div class="shop-card-body">
-            <p class="shop-card-category">
-              {% if product.category %}{{ product.category }}{% elif product.in_stock %}В наличии{% endif %}
-            </p>
             <h2 class="shop-card-title">{{ product.name }}</h2>
-            <p class="shop-card-text">{{ product.description }}</p>
-            <a href="{% url 'main:contacts' %}" class="shop-card-btn">
-              {% if product.price %}от {{ product.price }} сом{% else %}Уточнить цену{% endif %}
-            </a>
+            <p class="shop-card-subtitle">{{ product.description|default:product.category|default:"" }}</p>
+            <div class="shop-card-price-row">
+              <span>Цена</span>
+              <strong>{% if product.price %}{{ product.price|floatformat:0 }} сом{% else %}—{% endif %}</strong>
+            </div>
+            <a href="{% url 'main:contacts' %}" class="shop-card-btn">Перейти</a>
           </div>
-        </div>
+        </article>
         {% empty %}
-        <p class="shop-empty">Товары пока не добавлены. Свяжитесь с нами для уточнения ассортимента.</p>
+        <p class="shop-empty-state">Нет данных</p>
         {% endfor %}
       </div>
+
+      {% if page_obj.paginator.num_pages > 1 %}
+      <nav class="shop-pagination" aria-label="Навигация по страницам каталога">
+        {% if page_obj.has_previous %}
+        <a class="shop-page-btn" href="?{% if querystring %}{{ querystring }}&{% endif %}page={{ page_obj.previous_page_number }}">‹</a>
+        {% else %}
+        <span class="shop-page-btn is-disabled">‹</span>
+        {% endif %}
+
+        {% for num in page_obj.paginator.page_range %}
+        <a class="shop-page-btn{% if page_obj.number == num %} is-active{% endif %}" href="?{% if querystring %}{{ querystring }}&{% endif %}page={{ num }}">{{ num }}</a>
+        {% endfor %}
+
+        {% if page_obj.has_next %}
+        <a class="shop-page-btn" href="?{% if querystring %}{{ querystring }}&{% endif %}page={{ page_obj.next_page_number }}">›</a>
+        {% else %}
+        <span class="shop-page-btn is-disabled">›</span>
+        {% endif %}
+      </nav>
+      {% endif %}
     </div>
   </div>
 </section>
-
 {% endblock %}

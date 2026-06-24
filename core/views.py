@@ -1,3 +1,5 @@
+from django.core.paginator import Paginator
+from django.db.models import Q
 from django.shortcuts import render
 
 from .models import GalleryImage, Product
@@ -14,18 +16,33 @@ def about(request):
 def products(request):
     queryset = Product.objects.filter(in_stock=True)
 
-    category = request.GET.get("category")
+    category = request.GET.get("category", "").strip()
     if category:
         queryset = queryset.filter(category__iexact=category)
 
-    price_from = request.GET.get("price_from")
-    price_to = request.GET.get("price_to")
-    if price_from:
-        queryset = queryset.filter(price__gte=price_from)
-    if price_to:
-        queryset = queryset.filter(price__lte=price_to)
+    search = request.GET.get("q", "").strip()
+    if search:
+        queryset = queryset.filter(
+            Q(name__icontains=search)
+            | Q(description__icontains=search)
+            | Q(category__icontains=search)
+        )
 
-    products_list = queryset.order_by("sort_order", "name")
+    price_min = request.GET.get("price_min", "").strip()
+    price_max = request.GET.get("price_max", "").strip()
+    if price_min:
+        queryset = queryset.filter(price__gte=price_min)
+    if price_max:
+        queryset = queryset.filter(price__lte=price_max)
+
+    if request.GET.get("is_sale") == "1":
+        queryset = queryset.filter(is_sale=True)
+    if request.GET.get("is_new") == "1":
+        queryset = queryset.filter(is_new=True)
+    if request.GET.get("is_hit") == "1":
+        queryset = queryset.filter(is_hit=True)
+
+    queryset = queryset.order_by("sort_order", "name")
     categories = (
         Product.objects.filter(in_stock=True)
         .exclude(category="")
@@ -34,13 +51,23 @@ def products(request):
         .order_by("category")
     )
 
+    paginator = Paginator(queryset, 6)
+    page_obj = paginator.get_page(request.GET.get("page"))
+
+    params = request.GET.copy()
+    params.pop("page", None)
+    querystring = params.urlencode()
+
     return render(
         request,
         "products.html",
         {
-            "products": products_list,
+            "page_obj": page_obj,
+            "products": page_obj.object_list,
             "categories": categories,
-            "active_category": category or "",
+            "active_category": category,
+            "filters": request.GET,
+            "querystring": querystring,
         },
     )
 

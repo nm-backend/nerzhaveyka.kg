@@ -1,4 +1,4 @@
-// Открытие и закрытие мобильного меню.
+// Мобильное меню: открытие и закрытие бургер-панели.
 const burger = document.getElementById('burger');
 const mobileMenu = document.getElementById('mobileMenu');
 const mobileClose = document.getElementById('mobileClose');
@@ -30,7 +30,7 @@ function closeMobileMenu() {
   document.body.style.overflow = '';
 }
 
-// Подсветка активной ссылки в верхнем меню.
+// Подсветка активного пункта навигации по URL.
 const currentPath = window.location.pathname;
 
 document.querySelectorAll('.nav__link').forEach(function (link) {
@@ -41,7 +41,7 @@ document.querySelectorAll('.nav__link').forEach(function (link) {
   }
 });
 
-// Отправка форм заявки без перезагрузки страницы.
+// AJAX-отправка форм заявки (CTA и контакты).
 document.querySelectorAll('.cta-form, .contact-form').forEach(function (form) {
   form.addEventListener('submit', function (event) {
     event.preventDefault();
@@ -101,4 +101,18 @@ function sendContactForm(form) {
         submitButton.disabled = false;
       }
     });
+}
+
+// Кнопка «Сбросить значения» в каталоге сбрасывает форму фильтра.
+const shopFilter = document.getElementById('shopFilter');
+const shopFilterReset = document.querySelector('.shop-filter-reset');
+
+if (shopFilter && shopFilterReset) {
+  shopFilterReset.addEventListener('click', function (event) {
+    if (shopFilterReset.getAttribute('href') === window.location.pathname) {
+      event.preventDefault();
+      shopFilter.reset();
+      window.location.href = shopFilterReset.getAttribute('href');
+    }
+  });
 }
