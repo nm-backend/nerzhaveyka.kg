@@ -6,24 +6,12 @@
 
 {% block content %}
 
-<div class="page-hero">
-  <div class="container">
-    <h1 class="page-hero-title">Галерея</h1>
-    <div class="page-hero-breadcrumb">
-      <a href="{% url 'main:index' %}">Главная</a>
-      <span class="sep">/</span>
-      <span>Галерея</span>
-    </div>
-  </div>
-</div>
-
 <section class="gallery-page">
   <div class="container">
     <div class="gallery-head">
-      <h2>Наши работы и продукция</h2>
+      <h2>Галерея</h2>
       <p>
-        В этом разделе собраны фотографии нержавеющих труб, листов,
-        готовых изделий и работ по металлу.
+        Нет данных
       </p>
     </div>
 
@@ -43,7 +31,7 @@
         {% endif %}
       </div>
       {% empty %}
-      <p class="gallery-empty">Фотографии скоро появятся в галерее.</p>
+      <!-- <p class="gallery-empty">Фотографии скоро появятся в галерее.</p> -->
       {% endfor %}
     </div>
   </div>
