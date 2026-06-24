@@ -1926,8 +1926,8 @@ h3 {
 }
 
 .contact-item-label {
-  font-size: 0.82rem;
-  color: var(--color-text-body-light);
+  font-size: 26px;
+  color: black;
   margin-bottom: 2px;
 }
 
@@ -2033,7 +2033,7 @@ h3 {
   width: 40px;
   height: 40px;
   border-radius: 50%;
-  background: var(--color-text-dark);
+  background: #E9F3F8;
   color: #fff;
   transition:
     background 0.18s ease,
