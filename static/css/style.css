@@ -259,7 +259,7 @@ h3 {
 
 .logo {
   flex-shrink: 0;
-  font-size: 2rem;
+  font-size: 40px;
   font-weight: 700;
   line-height: 1;
   letter-spacing: 0;
@@ -281,7 +281,7 @@ h3 {
 .nav-link {
   color: #fff;
   font-weight: 500;
-  font-size: 1rem;
+  font-size: 20px;
   line-height: 1.2;
   padding-block: 6px;
   border-bottom: 1px solid transparent;
@@ -324,7 +324,7 @@ h3 {
   display: flex;
   flex-direction: column;
   gap: 6px;
-  font-size: 0.875rem;
+  font-size: 18px;
   line-height: 1.2;
   font-weight: 500;
 }
@@ -387,15 +387,15 @@ h3 {
   max-width: 616px;
   margin-bottom: 32px;
   color: #fff;
-  font-size: 48px;
-  font-weight: 600;
+  font-size: 60px;
+  font-weight: 670;
   line-height: 1.1;
 }
 
 .hero-text {
   max-width: 616px;
   color: #c4c4c4;
-  font-size: 20px;
+  font-size: 24px;
   font-weight: 500;
   line-height: 24px;
 }
@@ -1506,7 +1506,7 @@ h3 {
 .about-history-text h2 {
   margin-bottom: 24px;
   color: #242527;
-  font-size: 36px;
+  font-size: 46px;
   font-weight: 700;
   line-height: 1.15;
 }
