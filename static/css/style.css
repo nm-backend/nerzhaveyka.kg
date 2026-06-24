@@ -1482,7 +1482,9 @@ h3 {
   transform: rotateY(180deg);
 }
 
-.about-intro,
+.about-intro{
+  margin-top: 70px;
+}
 .about-founder{
   margin-left: 00px;
 }
